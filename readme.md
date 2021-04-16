@@ -14,7 +14,7 @@ $ python manage.py runserver
 
 ## Database
 
-This app uses MySQL to store the data. For the application to work, the credentials of your own MySQL database need to be put in the [settings.py](https://github.com/dajkatal/CS-MiniIA/blob/master/MiniIA/settings.py#L79) folder.
+This app uses MySQL to store the data. For the application to work, the credentials of your own MySQL database need to be put in the [settings.py](https://github.com/dajkatal/CS-FinalIA/blob/master/MiniIA/settings.py#L79) folder.
 
 ## Format of DATA
 The following data is all fake but has the required structure.
