@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="grid-container">
+    <div class="back">
+        <i class="fa fa-angle-left" style="font-weight: 900;"></i>
+        <a style="font-family: montserratbold; font-size: 18px; vertical-align: middle; color: #196EA8;" href="{{ url_back }}">Back</a>
+    </div>
+    <div class="header margin_right_22">
+        {% if messages %}
+            {% for message in messages %}
+                <div>
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <h1>GRADE {{ grade }} - STUDENTS MISSING FRIENDS</h1>
+    </div>
+    <div class="classoverview" id="container">
+        {% for key, value in overview.items %}
+            <div class="data">
+                <strong style="font-family: montserratmedium">{{ key.upper }}</strong><br> {{ value }}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="info-text" style="margin-top: 0px;">
+    <h2>Students</h2>
+</div>
+
+<span id="1_name_sort" style="display: none;">ascending</span>
+<span id="2_name_sort" style="display: none;">ascending</span>
+
+<table style="margin-left: 5%; margin-right: 5%;" class="table" id="students_table">
+<thead class="thead-dark">
+    <tr>
+      <th scope="col">PS NUMBER</th>
+        <th scope="col">FIRST NAME <i id="1_name_icon" role="button" onclick="bubble_sort(1)" class="fa fa-sort sort_icon"></i></th>
+      <th scope="col">LAST NAME <i id="2_name_icon" role="button" onclick="bubble_sort(2)" class="fa fa-sort sort_icon"></i></th>
+        <th scope="col">GENDER</th>
+        <th scope="col">ARABIC</th>
+        <th scope="col">ISLAMIC</th>
+        <th scope="col">CLASS</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in no_friends %}
+        <tr>
+        {% for value in student %}
+            <td>{{ value }}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+<script>
+
+function bubble_sort(row_id) {
+    var table, rows, elements_switched, switch_needed, i, a, b, aTOz, row_other;
+    table = document.getElementById('students_table');
+    aTOz = document.getElementById(`${row_id}_name_sort`).innerHTML;
+    if (row_id === 2) {row_other = 1} else {row_other = 2}
+
+    if (aTOz === 'ascending') {
+        document.getElementById(`${row_id}_name_sort`).innerHTML = 'descending';
+        document.getElementById(`${row_id}_name_icon`).classList = '';
+        document.getElementById(`${row_id}_name_icon`).classList.add('fa-sort-up', 'fa', 'sort_icon');
+    }
+    else { document.getElementById(`${row_id}_name_sort`).innerHTML = 'ascending';
+        document.getElementById(`${row_id}_name_icon`).className = '';
+        document.getElementById(`${row_id}_name_icon`).classList.add('fa-sort-down', 'fa', 'sort_icon');
+    }
+
+    document.getElementById(`${row_other}_name_icon`).className = '';
+    document.getElementById(`${row_other}_name_icon`).classList.add('fa-sort', 'fa', 'sort_icon');
+
+    elements_switched = true;
+    while (elements_switched) {
+        rows = table.rows;
+        elements_switched = false; // Assumes that no future elements will need to be switched.
+        for (i = 1; i < rows.length-1; i++) {
+            switch_needed = false;
+            a = rows[i].getElementsByTagName("td")[row_id];
+            b = rows[i+1].getElementsByTagName("td")[row_id];
+
+            if (aTOz === 'ascending') {
+                if (a.innerHTML.toLowerCase() > b.innerHTML.toLowerCase()) {
+                    switch_needed = true;
+                    break;
+                }
+            }
+            else {
+                if (a.innerHTML.toLowerCase() < b.innerHTML.toLowerCase()) {
+                    switch_needed = true;
+                    break;
+                }
+            }
+        }
+        if (switch_needed) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            elements_switched = true;
+        }
+    }
+
+}
+
+</script>
+
+{% endblock %}

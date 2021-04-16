@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="grid-container">
+    <div class="back">
+        <i class="fa fa-angle-left" style="font-weight: 900;"></i>
+        <a style="font-family: montserratbold; font-size: 18px; vertical-align: middle; color: #196EA8;" href="{{ url_back }}">Back</a>
+    </div>
+    <div class="header margin_right_22">
+        <h1>UPLOAD STUDENTS</h1>
+    </div>
+
+    <div class="info-text">
+        <h2>Please upload your csv file</h2>
+    </div>
+    <div class="classes" style="margin-left: 3.5%;">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div style="display: flex">
+                <label for="file-upload" class="btn btn-primary homepage_btns">CHOOSE</label>
+                <button type="submit" name="file_submission" role="button"><h2>UPLOAD</h2></button>
+            </div>
+            <input class="file_info" id="uploadFile" placeholder="Choose File" disabled="disabled" />
+            <input id="file-upload" name="file" type="file"/>
+
+        </form>
+    </div>
+    <div class="no_friends" style="font-size: 20px; color: #196EA8;">
+        {% if messages %}
+        <div class="item0">
+            {% for message in messages %}
+                <div>
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
+        </div>
+{% endif %}
+    </div>
+</div>
+
+<script>
+
+document.getElementById("file-upload").onchange = function () {
+    document.getElementById("uploadFile").value = this.value.replace(/^.*\\/, "");;
+};
+
+</script>
+
+{% endblock %}

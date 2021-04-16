@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CS IA</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+        @font-face {
+            font-family: 'montserratblack';
+            src: local('montserratblack'),
+                url("{% static 'fonts/Montserrat-Black.ttf' %}") format("truetype");
+        }
+
+        @font-face {
+            font-family: 'montserratmedium';
+            src: local('montserratmedium'),
+                url("{% static 'fonts/Montserrat-Medium.ttf' %}") format("truetype");
+        }
+
+        @font-face {
+            font-family: 'montserratbold';
+            src: local('montserratbold'),
+                url("{% static 'fonts/Montserrat-Bold.ttf' %}") format("truetype");
+        }
+
+        @font-face {
+            font-family: 'montserratregular';
+            src: local('montserratregular'),
+                url("{% static 'fonts/Montserrat-Regular.ttf' %}") format("truetype");
+        }
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+{% block content %}
+{%  endblock %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

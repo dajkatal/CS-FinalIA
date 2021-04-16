@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="grid-container">
+    <div class="back">
+        <i class="fa fa-angle-left" style="font-weight: 900;"></i>
+        <a style="font-family: montserratbold; font-size: 18px; vertical-align: middle; color: #196EA8;" href="{{ url_back }}">Back</a>
+    </div>
+    <div class="header margin_right_22">
+        <h1>GRADE {{ grade }} OVERVIEW</h1>
+    </div>
+    <div class="classoverview" id="container">
+        {% for key, value in overview.items %}
+            <div class="data">
+                <strong style="font-family: montserratmedium">{{ key.upper }}</strong><br> {{ value }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="info-text">
+        <h2>Please select a class</h2>
+        <h4 class="export"><a role="button" class="export_txt" href="{% url 'download' grade 101 %}">EXPORT ALL TO CSV</a></h4>
+    </div>
+    <div class="classes">
+        <form method="post">
+        {% csrf_token %}
+            {%  for set_of_classes in num_classes %}
+                <div id="container">
+                    {% for class_index in set_of_classes %}
+                        <button class="btn btn-primary class_btns" type="submit" name="{{ class_index }}">CLASS {{ class_index }}</button>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </form>
+    </div>
+    <div class="no_friends">
+        <h4 style="margin-top: 0;"><a role="button" class="export_txt" href="{% url 'reset data' grade %}">DELETE ALL DATA</a></h4>
+        <a href="{% url 'grade_no_friends' grade %}"><button class="btn red_btns btn-danger" role="button"><i class="fa fa-warning" style="padding-right: 3px"></i> STUDENTS WITH NO FRIEND</button></a>
+    </div>
+</div>
+<!--
+<div style="width: 500px; text-align: left"><h2>Students with no friends:</h2></div>
+<div>
+        <table>
+            <tr>
+                <th>Student</th>
+                <th>Gender</th>
+                <th>Islamic</th>
+                <th>Native Arabic</th>
+            </tr>
+
+            {% for student in no_friends %}
+                <tr>
+                {% for value in student %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+<div>
+</div>
+-->
+
+
+{% endblock %}

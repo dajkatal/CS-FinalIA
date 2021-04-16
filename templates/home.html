@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container" style="height: 100vh;">
+        <div class="row" style="padding: 20% 0%;">
+            <div style="justify-content: center; display: flex; padding-bottom: 7vh">
+                <h1 class="header">Please select a grade level</h1>
+            </div>
+            <div style="justify-content: center; display: flex">
+                <a class="btn btn-primary homepage_btns" role="button" href="{% url 'class' 6 %}">GRADE 6</a>
+                <a class="btn btn-primary homepage_btns" role="button" href="{% url 'class' 7 %}">GRADE 7</a>
+                <a class="btn btn-primary homepage_btns" role="button" href="{% url 'class' 8 %}">GRADE 8</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
