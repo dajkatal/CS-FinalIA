@@ -6,7 +6,7 @@ This Django web application takes a set of students (between 200-216) and distri
 Requires [Django](https://www.djangoproject.com/) to work.
 
 ```sh
-$ git clone {link}
+$ git clone https://github.com/dajkatal/CS-FinalIA.git
 $ cd CS-FinalIA
 $ pip install -r requirements.txt
 $ python manage.py runserver
